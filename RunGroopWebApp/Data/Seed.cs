@@ -22,7 +22,7 @@ namespace RunGroopWebApp.Data
                         {
                             Title = "Running Club 1",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first cinema",
+                            Description = "This is the description of the first club",
                             ClubCategory = ClubCategory.City,
                             Address = new Address()
                             {
@@ -35,7 +35,7 @@ namespace RunGroopWebApp.Data
                         {
                             Title = "Running Club 2",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first cinema",
+                            Description = "This is the description of the second club",
                             ClubCategory = ClubCategory.Endurance,
                             Address = new Address()
                             {
@@ -48,7 +48,7 @@ namespace RunGroopWebApp.Data
                         {
                             Title = "Running Club 3",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first club",
+                            Description = "This is the description of the third club",
                             ClubCategory = ClubCategory.Trail,
                             Address = new Address()
                             {
@@ -95,7 +95,7 @@ namespace RunGroopWebApp.Data
                         {
                             Title = "Running Race 2",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first race",
+                            Description = "This is the description of the second race",
                             RaceCategory = RaceCategory.Ultra,
                             AddressId = 5,
                             Address = new Address()
@@ -125,35 +125,36 @@ namespace RunGroopWebApp.Data
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-                string adminUserEmail = "teddysmithdeveloper@gmail.com";
+                string adminUserEmail = "admin@host.com";
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if (adminUser == null)
                 {
                     var newAdminUser = new AppUser()
                     {
-                        UserName = "teddysmithdev",
+                        UserName = "admin",
                         Email = adminUserEmail,
                         EmailConfirmed = true,
                         Address = new Address()
                         {
-                            Street = "123 Main St",
-                            City = "Charlotte",
-                            State = "NC"
+                            Street = "Lingsgatan 3",
+                            City = "Ystad",
+                            State = "Skane"
                         }
                     };
-                    await userManager.CreateAsync(newAdminUser, "Coding@1234?");
+
+                    await userManager.CreateAsync(newAdminUser, "admin@host.com");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 
-                string appUserEmail = "user@etickets.com";
+                string appUserEmail = "user1@host.com";
 
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
                 if (appUser == null)
                 {
                     var newAppUser = new AppUser()
                     {
-                        UserName = "app-user",
+                        UserName = "user1@host.com",
                         Email = appUserEmail,
                         EmailConfirmed = true,
                         Address = new Address()
@@ -163,7 +164,7 @@ namespace RunGroopWebApp.Data
                             State = "NC"
                         }
                     };
-                    await userManager.CreateAsync(newAppUser, "Coding@1234?");
+                    await userManager.CreateAsync(newAppUser, "user1@host.com");
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }
